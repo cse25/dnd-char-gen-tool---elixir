@@ -3,6 +3,19 @@ defmodule Dnd do
     input
     |> generate_character
     |> roll_stats
+    |> assign_rolls
+  end
+
+  def assign_rolls(%Dnd.Character{stat_rolls: stat_rolls, skills: skills, name: name, total: total} = character) do
+    IO.puts name
+    IO.puts total
+    IO.inspect stat_rolls, charlists: :as_lists
+    for number <- stat_rolls do
+      IO.puts skills
+      IO.puts "Character: #{name}"
+      IO.puts "Current Stat Value: #{number}"
+      IO.gets "Input index of stat you wish you assign current value to:"
+    end
   end
 
   def roll_stats(%Dnd.Character{name: name} = character) do
